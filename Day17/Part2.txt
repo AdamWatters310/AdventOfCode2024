@@ -1,0 +1,43 @@
+    |       A       |       B       |       C       
+    |
+2,4 | a             | b = a mod 8   | 0 
+1,1 | a             | (a mod 8)^1   | c
+7,5 |               |               | a // pow(2, (a mod 8)^1)
+0,3 | a//8          |               |
+4,3 |               | ((a mod 8)^1)^a //pow(2,(a mod 8)^1)
+1,6 |               | (((a mod 8)^1)^(a //pow(2,(a mod 8)^1)))^(a // pow(2, (a mod 8)^1))
+5,5 |               | 2
+3,0 |  
+
+SIMPLIFICATION
+(((a mod 8)^1)^(a //pow(2,(a mod 8)^1)))^(a // pow(2, (a mod 8)^1)) = 2
+(a mod 8) ^ 1 ^ (a //pow(2,(a mod 8)^1)) ^ (a // pow(2, (a mod 8)^1)) = 2
+(a mod 8) ^ 1 ^ 0 = 2
+(a mod 8) ^ 1 ^ 1= 2 ^ 1
+(a mod 8) = 2^1 = 3
+a is 3 above a multiple of 8
+
+2nd pass
+(consider a to be 8n+3)
+
+    |       A       |       B       |       C       
+    |
+2,4 | 8n+3          | 3             | 0 
+1,1 | 8n+3          | 2             | c
+7,5 |               |               | 8n+3 // 4 = 2n
+0,3 | 8n+3//8=n     |               |
+4,3 |               | 2n^2
+1,6 |               | 2
+5,5 |               | 2
+3,0 | 
+
+observe that when we 
+
+
+b = a mod 8
+b ^= 1
+c = a / pow(2, b)
+a = a / 8
+b = b^c
+b = b^6
+out b mod 8

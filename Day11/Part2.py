@@ -2,9 +2,11 @@ input = open("input.txt").read().split()
 
 # val -> [[vals], steps to get there]
 cache = {}
-ITERATIONS = 75
+ITERATIONS = 125
+stoneshandled=0
 
 def getStoneCount(iter, val):
+    global stoneshandled
     if iter == ITERATIONS:
         return 1
     if (iter, val) in cache: return cache[(iter, val)]
@@ -16,7 +18,9 @@ def getStoneCount(iter, val):
         returnVal = getStoneCount(iter+1, int(sval[:(len(sval)//2)])) + getStoneCount(iter+1, int(sval[(len(sval)//2):]))
     else :
         returnVal = getStoneCount(iter+1, val*2024)
-    cache[(iter, val)] = returnVal
+    #cache[(iter, val)] = returnVal
+    stoneshandled += 1
+    print(stoneshandled)
     return returnVal
 
 total = 0
